@@ -35,13 +35,14 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
-	Joystick leftStick;
-	Joystick rightStick;
-	Joystick controller;
+	public Joystick leftStick;
+	public Joystick rightStick;
+	public Joystick controller;
 	
 	public OI() {
 		leftStick = new Joystick(ControlMap.PORT_LEFT);
 		rightStick = new Joystick(ControlMap.PORT_RIGHT);
+		controller = new Joystick(ControlMap.PORT_CONTROLLER);
 	}
 }
 

@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team236.robot;
 
+import org.usfirst.frc.team236.robot.subsystems.Turret;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -23,6 +25,7 @@ public class Robot extends IterativeRobot {
 	
 	// Subsystems
 	public static TickTank tank;
+	public static Turret turret;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -44,6 +47,7 @@ public class Robot extends IterativeRobot {
 		config.hasGyro = false;
 		
 		tank = new TickTank(config);
+		turret = new Turret();
     }
 	
 	/**
