@@ -38,6 +38,4 @@ public class TurretWithJoystick extends Command {
 	protected void interrupted() {
 		end();
 	}
-
-
 }
