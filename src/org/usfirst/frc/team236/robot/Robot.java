@@ -3,6 +3,7 @@ package org.usfirst.frc.team236.robot;
 
 import org.usfirst.frc.team236.robot.commands.LeftAuto;
 import org.usfirst.frc.team236.robot.commands.RightAuto;
+import org.usfirst.frc.team236.robot.commands.TestAuto;
 import org.usfirst.frc.team236.robot.subsystems.Turret;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -72,7 +73,7 @@ public class Robot extends IterativeRobot {
 		leftGearLeg2 = new Profile(AutoMap.leftGearLeg2);
 
 		chooser = new SendableChooser();
-		//chooser.addDefault("Profile", new TestAuto(tank, gearDelivery));
+		//chooser.addDefault("Front", new TestAuto(tank, straightGearDelivery));
 		//chooser.addDefault("Right", new RightAuto());
 		chooser.addDefault("Left", new LeftAuto());
 
