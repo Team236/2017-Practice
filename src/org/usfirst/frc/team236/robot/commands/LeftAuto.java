@@ -14,10 +14,9 @@ import ticktank.commands.Turn;
 public class LeftAuto extends CommandGroup {
 
     public LeftAuto() {
-    	addSequential(new Wait(5));
     	addSequential(new FollowProfile(Robot.tank, Robot.leftGearLeg1, false));
     	addSequential(new Turn(Robot.tank, AutoMap.leftTurnDegreees, Direction.CW));
-    	addSequential(new Wait(5));
+    	addSequential(new Wait(0));
     	addSequential(new FollowProfile(Robot.tank, Robot.leftGearLeg2, false));
     }
 }
