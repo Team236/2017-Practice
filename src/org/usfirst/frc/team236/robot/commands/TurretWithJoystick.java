@@ -18,8 +18,8 @@ public class TurretWithJoystick extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.turret.setPitchSpeed(-Robot.oi.controller.getRawAxis(LogitechF310.Axes.LEFT_Y) / 8);
-		Robot.turret.setYawSpeed(-Robot.oi.controller.getRawAxis(LogitechF310.Axes.LEFT_X));
+		Robot.turret.setPitchSpeed(-Robot.oi.controller.getRawAxis(LogitechF310.Axes.RIGHT_Y) / 8);
+		Robot.turret.setYawSpeed(-Robot.oi.controller.getRawAxis(LogitechF310.Axes.RIGHT_X));
 	}
 
 	// Run until the command is interrupted
