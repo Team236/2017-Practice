@@ -1,5 +1,7 @@
 package org.usfirst.frc.team236.robot;
 
+import pid.PIDParameters;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -7,7 +9,7 @@ package org.usfirst.frc.team236.robot;
  * floating around.
  */
 public class RobotMap {
-	public class Turret {
+	public static class Turret {
 		public static final int PWM_YAW = 4;
 		public static final int PWM_PITCH = 5;
 
@@ -19,7 +21,7 @@ public class RobotMap {
 		public static final int DIO_LIMIT_BOTTOM = 7;
 	}
 	
-	public class Drive {
+	public static class Drive {
 		public static final int DIO_LEFT_ENCODER_A = 8;
 		public static final int DIO_LEFT_ENCODER_B = 9;
 		
@@ -31,6 +33,12 @@ public class RobotMap {
 		
 		public static final double DISTANCE_PER_PULSE = CIRCUMFERENCE / (128);
 		
-		public static final double kV = 0.008;
+		public static final double kV_left = 0.037;
+		public static final double kV_right = 0.033;
+		
+		public static final double kA = 0.010;
+		public static final double kP = 0.020;
+		
+		public static final PIDParameters turnParams = new PIDParameters(0.010, 0.03, 0.001, .01);
 	}
 }

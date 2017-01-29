@@ -1,12 +1,12 @@
 
 package org.usfirst.frc.team236.robot;
 
-import org.usfirst.frc.team236.robot.commands.RawGear;
-import org.usfirst.frc.team236.robot.commands.TestAuto;
+import org.usfirst.frc.team236.robot.commands.LeftAuto;
+import org.usfirst.frc.team236.robot.commands.RightAuto;
 import org.usfirst.frc.team236.robot.subsystems.Turret;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.NamedSendable;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -20,8 +20,14 @@ import ticktank.motionProfile.Profile;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	
-	public static Profile testProfile;
+
+	// Declare profiles
+	public static Profile straightGearDelivery;
+	public static Profile rightGearLeg1;
+	public static Profile rightGearLeg2;
+
+	public static Profile leftGearLeg1;
+	public static Profile leftGearLeg2;
 
 	// Subsystems
 	public static TickTank tank;
@@ -32,39 +38,44 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void robotInit() {
-		oi = new OI();
-
 		Settings config = new Settings();
-		config.controllerType = ControllerType.VICTOR;
+		config.controllerType = ControllerType.SPARK;
 		config.hasEncoders = true;
 		config.motorCount = 2;
-		config.leftStick = oi.leftStick;
-		config.rightStick = oi.rightStick;
+		config.leftStick = new Joystick(0);
+		config.rightStick = new Joystick(1);
 		config.hasGears = false;
-		config.hasGyro = false;
-		
+		config.hasGyro = true;
+
 		// Encoder ports
 		config.leftEncoderA = RobotMap.Drive.DIO_LEFT_ENCODER_A;
 		config.leftEncoderB = RobotMap.Drive.DIO_LEFT_ENCODER_B;
 		config.rightEncoderA = RobotMap.Drive.DIO_RIGHT_ENCODER_A;
 		config.rightEncoderB = RobotMap.Drive.DIO_RIGHT_ENCODER_B;
 		config.rightInvEncoder = true;
+		config.rightInv = true;
 		config.dpp = RobotMap.Drive.DISTANCE_PER_PULSE;
-		config.params = AutoMap.params;
+		config.leftParams = AutoMap.leftParams;
+		config.rightParams = AutoMap.rightParams;
+		config.turnParams = RobotMap.Drive.turnParams;
 
 		tank = new TickTank(config);
 		turret = new Turret();
-		
+		oi = new OI();
+
 		// Create profiles
-		testProfile = new Profile(AutoMap.test);
-		System.out.println(testProfile.length());
-		
-		// Create commands
-		TestAuto testAuto = new TestAuto(tank, testProfile);
-		
+		straightGearDelivery = new Profile(AutoMap.straightGear);
+		rightGearLeg1 = new Profile(AutoMap.rightGearLeg1);
+		rightGearLeg2 = new Profile(AutoMap.rightGearLeg2);
+
+		leftGearLeg1 = new Profile(AutoMap.leftGearLeg1);
+		leftGearLeg2 = new Profile(AutoMap.leftGearLeg2);
+
 		chooser = new SendableChooser();
-		chooser.addDefault("96 inches", new TestAuto(tank, testProfile));
-		chooser.addObject("Gear delivery", new RawGear());
+		//chooser.addDefault("Profile", new TestAuto(tank, gearDelivery));
+		//chooser.addDefault("Right", new RightAuto());
+		chooser.addDefault("Left", new LeftAuto());
+
 		SmartDashboard.putData("Auto Mode", chooser);
 	}
 
@@ -72,7 +83,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
-	
+
 	@Override
 	public void autonomousInit() {
 		tank.left.zeroEncoder();
@@ -80,19 +91,21 @@ public class Robot extends IterativeRobot {
 		autonomousCommand = ((Command) chooser.getSelected());
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
-		} 
+		}
 	}
 
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+
 		SmartDashboard.putNumber("Left Encoder", tank.left.getDistance());
 		SmartDashboard.putNumber("Right Encoders", tank.right.getDistance());
-		
+
 		SmartDashboard.putNumber("Left Velocity", tank.left.getEncoder().getRate());
 		SmartDashboard.putNumber("Right Velocity", tank.right.getEncoder().getRate());
+
 	}
-	
+
 	public void teleopInit() {
 		autonomousCommand = ((Command) chooser.getSelected());
 		if (autonomousCommand != null) {
@@ -100,6 +113,7 @@ public class Robot extends IterativeRobot {
 		}
 		tank.left.zeroEncoder();
 		tank.right.zeroEncoder();
+		tank.navx.reset();
 	}
 
 	@Override
@@ -110,9 +124,9 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putNumber("Left Velocity", tank.left.getEncoder().getRate());
 		SmartDashboard.putNumber("Right Velocity", tank.right.getEncoder().getRate());
-		
 		SmartDashboard.putNumber("Left kV", tank.left.getSpeed()/tank.left.getEncoder().getRate());
 		SmartDashboard.putNumber("Right kV", tank.right.getSpeed()/tank.right.getEncoder().getRate());
+		SmartDashboard.putNumber("Gyro", tank.navx.getAngle());
 	}
 
 	@Override

@@ -4,25 +4,37 @@ import org.usfirst.frc.team236.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RawGearDrive extends Command {
+public class DriveStraight extends Command {
+	
+	double speed;
+	
+	public DriveStraight(double speed) {
+		this.speed = speed;
+	}
+	
 	@Override
 	protected void initialize() {
 		Robot.tank.stop();
-		Robot.tank.zeroEncoders();
 	}
 	
 	@Override
 	protected void execute() {
-		Robot.tank.setSpeeds(.25, .25);
+		Robot.tank.setSpeeds(speed, speed);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.tank.left.getDistance() > 96;
+		return false;
 	}
 	
 	@Override
 	protected void end() {
 		Robot.tank.stop();
 	}
+	
+	@Override
+	protected void interrupted() {
+		end();
+	}
+	
 }
