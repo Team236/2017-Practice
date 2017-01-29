@@ -5,7 +5,7 @@ import ticktank.motionProfile.ProfileParameters;
 
 public class AutoMap {
 	// Straight gear delivery
-	public static final ProfileParameters straightGear = new ProfileParameters(77.5, 10, 2, 10);
+	public static final ProfileParameters straightGear = new ProfileParameters(77.5, 20, 2, 10);
 	
 	// Right gear delivery
 	public static final ProfileParameters rightGearLeg1 = new ProfileParameters(72, 10, 2, 10);
@@ -13,9 +13,9 @@ public class AutoMap {
 	public static final ProfileParameters rightGearLeg2 = new ProfileParameters(70, 10, 2, 10);
 	
 	// Left gear delivery
-	public static final ProfileParameters leftGearLeg1 = new ProfileParameters(70.9, 10, 2, 10);
+	public static final ProfileParameters leftGearLeg1 = new ProfileParameters(70.9, 20, 2, 10);
 	public static final double leftTurnDegreees = 60;
-	public static final ProfileParameters leftGearLeg2 = new ProfileParameters(69.5, 10, 2, 10);
+	public static final ProfileParameters leftGearLeg2 = new ProfileParameters(69.5, 20, 2, 10);
 	
 	// General Parameters
 	public static final DriveParameters leftParams = new DriveParameters(RobotMap.Drive.kV_left, RobotMap.Drive.kA, RobotMap.Drive.kP);
