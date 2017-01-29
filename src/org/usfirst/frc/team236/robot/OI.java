@@ -1,5 +1,7 @@
 package org.usfirst.frc.team236.robot;
 
+import org.usfirst.frc.team236.robot.commands.AlignDrive;
+import org.usfirst.frc.team236.robot.commands.DriveSlowWithJoysticks;
 import org.usfirst.frc.team236.robot.commands.DriveStraight;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -24,10 +26,16 @@ public class OI {
 		JoystickButton drive = new JoystickButton(controller, LogitechF310.A);
 		drive.whileHeld(new DriveStraight(.5));
 		
+		JoystickButton driveSlow = new JoystickButton(leftStick, 2);
+		driveSlow.whileHeld(new DriveSlowWithJoysticks(Robot.tank, 0.5));
+		
 		JoystickButton turn60 = new JoystickButton(controller, LogitechF310.LB);
-		turn60.whenPressed(new Turn(Robot.tank, 60, Direction.CW));
+		turn60.whenPressed(new Turn(Robot.tank, 180, Direction.CCW));
 		
 		JoystickButton invTurn60 = new JoystickButton(controller, LogitechF310.RB);
-		invTurn60.whenPressed(new Turn(Robot.tank, 60, Direction.CCW));
+		invTurn60.whenPressed(new Turn(Robot.tank, 180, Direction.CW));
+		
+		JoystickButton gearAlign = new JoystickButton(controller, LogitechF310.X);
+		gearAlign.whileHeld(new AlignDrive());
 	}
 }
