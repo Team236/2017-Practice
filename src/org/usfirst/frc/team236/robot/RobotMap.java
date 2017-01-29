@@ -37,8 +37,8 @@ public class RobotMap {
 		public static final double kV_right = 0.031;
 		
 		public static final double kA = 0.010;
-		public static final double kP = 0.025;
+		public static final double kP = 0.050;
 		
-		public static final PIDParameters turnParams = new PIDParameters(0.005, 0.004, 0.00, .01);
+		public static final PIDParameters turnParams = new PIDParameters(0.007, 0.010, 0.00, .01);
 	}
 }
