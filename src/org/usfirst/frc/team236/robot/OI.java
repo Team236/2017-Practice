@@ -3,6 +3,8 @@ package org.usfirst.frc.team236.robot;
 import org.usfirst.frc.team236.robot.commands.AlignDrive;
 import org.usfirst.frc.team236.robot.commands.DriveSlowWithJoysticks;
 import org.usfirst.frc.team236.robot.commands.DriveStraight;
+import org.usfirst.frc.team236.robot.commands.PlayMacro;
+import org.usfirst.frc.team236.robot.commands.RecordMacro;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -24,6 +26,13 @@ public class OI {
 		controller = new Joystick(ControlMap.PORT_CONTROLLER);
 
 		JoystickButton drive = new JoystickButton(controller, LogitechF310.A);
+
+		JoystickButton macro = new JoystickButton(rightStick, 8);
+		macro.whileHeld(new RecordMacro("test"));
+
+		JoystickButton playMacro = new JoystickButton(rightStick, 9);
+		playMacro.whenPressed(new PlayMacro("test"));
+
 		drive.whileHeld(new DriveStraight(.5));
 
 		JoystickButton driveSlow = new JoystickButton(leftStick, 2);
