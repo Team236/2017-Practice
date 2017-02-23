@@ -22,19 +22,19 @@ public class OI {
 		leftStick = new Joystick(ControlMap.PORT_LEFT);
 		rightStick = new Joystick(ControlMap.PORT_RIGHT);
 		controller = new Joystick(ControlMap.PORT_CONTROLLER);
-		
+
 		JoystickButton drive = new JoystickButton(controller, LogitechF310.A);
 		drive.whileHeld(new DriveStraight(.5));
-		
+
 		JoystickButton driveSlow = new JoystickButton(leftStick, 2);
 		driveSlow.whileHeld(new DriveSlowWithJoysticks(Robot.tank, 0.5));
-		
+
 		JoystickButton turn60 = new JoystickButton(controller, LogitechF310.LB);
 		turn60.whenPressed(new Turn(Robot.tank, 180, Direction.CCW));
-		
+
 		JoystickButton invTurn60 = new JoystickButton(controller, LogitechF310.RB);
 		invTurn60.whenPressed(new Turn(Robot.tank, 180, Direction.CW));
-		
+
 		JoystickButton gearAlign = new JoystickButton(controller, LogitechF310.X);
 		gearAlign.whileHeld(new AlignDrive());
 	}
