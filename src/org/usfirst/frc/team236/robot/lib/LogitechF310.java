@@ -1,4 +1,4 @@
-package org.usfirst.frc.team236.robot;
+package org.usfirst.frc.team236.robot.lib;
 
 public class LogitechF310 {
 	public static final int A = 1;

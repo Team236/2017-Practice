@@ -1,7 +1,7 @@
 package org.usfirst.frc.team236.robot.commands;
 
-import org.usfirst.frc.team236.robot.LogitechF310;
 import org.usfirst.frc.team236.robot.Robot;
+import org.usfirst.frc.team236.robot.lib.LogitechF310;
 
 import edu.wpi.first.wpilibj.command.Command;
 

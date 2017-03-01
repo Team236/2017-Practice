@@ -1,10 +1,9 @@
 package org.usfirst.frc.team236.robot.commands.drive;
 
-import org.usfirst.frc.team236.robot.LogitechF310;
 import org.usfirst.frc.team236.robot.Robot;
+import org.usfirst.frc.team236.robot.lib.Thrustmaster;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 
 /**
  *
