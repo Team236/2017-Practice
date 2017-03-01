@@ -1,15 +1,10 @@
 package org.usfirst.frc.team236.robot;
 
+import org.usfirst.frc.team236.robot.commands.climber.Climb;
 import org.usfirst.frc.team236.robot.commands.drive.AlignDrive;
-import org.usfirst.frc.team236.robot.commands.drive.DriveSlowWithJoysticks;
-import org.usfirst.frc.team236.robot.commands.drive.DriveStraight;
-import org.usfirst.frc.team236.robot.commands.drive.PlayMacro;
-import org.usfirst.frc.team236.robot.commands.drive.RecordMacro;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import ticktank.Direction;
-import ticktank.commands.Turn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -25,26 +20,10 @@ public class OI {
 		rightStick = new Joystick(ControlMap.PORT_RIGHT);
 		controller = new Joystick(ControlMap.PORT_CONTROLLER);
 
-		JoystickButton drive = new JoystickButton(controller, LogitechF310.A);
-
-		JoystickButton macro = new JoystickButton(rightStick, 8);
-		macro.whileHeld(new RecordMacro("test"));
-
-		JoystickButton playMacro = new JoystickButton(rightStick, 9);
-		playMacro.whenPressed(new PlayMacro("test"));
-
-		drive.whileHeld(new DriveStraight(.5));
-
-		JoystickButton driveSlow = new JoystickButton(leftStick, 2);
-		driveSlow.whileHeld(new DriveSlowWithJoysticks(Robot.tank, 0.5));
-
-		JoystickButton turn60 = new JoystickButton(controller, LogitechF310.LB);
-		turn60.whenPressed(new Turn(Robot.tank, 180, Direction.CCW));
-
-		JoystickButton invTurn60 = new JoystickButton(controller, LogitechF310.RB);
-		invTurn60.whenPressed(new Turn(Robot.tank, 180, Direction.CW));
-
 		JoystickButton gearAlign = new JoystickButton(controller, LogitechF310.X);
 		gearAlign.whileHeld(new AlignDrive());
+		
+		JoystickButton climb = new JoystickButton(controller, LogitechF310.START);
+		climb.whileHeld(new Climb());
 	}
 }
