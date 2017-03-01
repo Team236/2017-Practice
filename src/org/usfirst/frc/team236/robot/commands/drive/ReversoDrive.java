@@ -6,13 +6,11 @@ import org.usfirst.frc.team236.robot.lib.Thrustmaster;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Drives the robot backwards
  */
-public class AlignDrive extends Command {
-	public static double speedFactor = 0.5;
-	public static double turnFactor = 0.5;
+public class ReversoDrive extends Command {
 
-	public AlignDrive() {
+	public ReversoDrive() {
 		requires(Robot.tank);
 	}
 
@@ -25,17 +23,8 @@ public class AlignDrive extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		double y = Robot.oi.left.getRawAxis(Thrustmaster.Axes.Y);
-		double z = Robot.oi.left.getRawAxis(Thrustmaster.Axes.Z);
-
-		double leftSpeed = speedFactor * y;
-		double rightSpeed = speedFactor * y;
-
-		leftSpeed += turnFactor * z;
-		rightSpeed -= turnFactor * z;
-
-		Robot.tank.setLeftSpeed(leftSpeed);
-		Robot.tank.setRightSpeed(rightSpeed);
+		Robot.tank.setRightSpeed(Robot.oi.left.getRawAxis(Thrustmaster.Axes.Y));
+		Robot.tank.setLeftSpeed(Robot.oi.right.getRawAxis(Thrustmaster.Axes.Y));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
