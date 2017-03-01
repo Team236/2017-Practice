@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public Joystick leftStick;
-	public Joystick rightStick;
+	public Joystick left;
+	public Joystick right;
 	public Joystick controller;
 
 	public OI() {
-		leftStick = new Joystick(ControlMap.PORT_LEFT);
-		rightStick = new Joystick(ControlMap.PORT_RIGHT);
+		left = new Joystick(ControlMap.PORT_LEFT);
+		right = new Joystick(ControlMap.PORT_RIGHT);
 		controller = new Joystick(ControlMap.PORT_CONTROLLER);
 
 		JoystickButton gearAlign = new JoystickButton(controller, LogitechF310.X);

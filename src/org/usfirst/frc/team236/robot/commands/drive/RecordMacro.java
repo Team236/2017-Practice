@@ -37,8 +37,8 @@ public class RecordMacro extends Command {
 	@Override
 	protected void execute() {
 		// Pass joystick input through
-		double leftSpeed = -Robot.oi.leftStick.getY();
-		double rightSpeed = -Robot.oi.rightStick.getY();
+		double leftSpeed = -Robot.oi.left.getY();
+		double rightSpeed = -Robot.oi.right.getY();
 
 		Robot.tank.setLeftSpeed(leftSpeed);
 		Robot.tank.setRightSpeed(rightSpeed);
