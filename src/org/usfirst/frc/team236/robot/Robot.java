@@ -61,7 +61,6 @@ public class Robot extends IterativeRobot {
 		config.turnParams = RobotMap.Drive.turnParams;
 
 		tank = new TickTank(config);
-		turret = new Turret();
 		oi = new OI();
 
 		// Create profiles
