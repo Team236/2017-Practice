@@ -1,7 +1,8 @@
-package org.usfirst.frc.team236.robot.commands;
+package org.usfirst.frc.team236.robot.commands.drive;
 
 import org.usfirst.frc.team236.robot.AutoMap;
 import org.usfirst.frc.team236.robot.Robot;
+import org.usfirst.frc.team236.robot.commands.Wait;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import ticktank.Direction;

@@ -1,10 +1,10 @@
 package org.usfirst.frc.team236.robot;
 
-import org.usfirst.frc.team236.robot.commands.AlignDrive;
-import org.usfirst.frc.team236.robot.commands.DriveSlowWithJoysticks;
-import org.usfirst.frc.team236.robot.commands.DriveStraight;
-import org.usfirst.frc.team236.robot.commands.PlayMacro;
-import org.usfirst.frc.team236.robot.commands.RecordMacro;
+import org.usfirst.frc.team236.robot.commands.drive.AlignDrive;
+import org.usfirst.frc.team236.robot.commands.drive.DriveSlowWithJoysticks;
+import org.usfirst.frc.team236.robot.commands.drive.DriveStraight;
+import org.usfirst.frc.team236.robot.commands.drive.PlayMacro;
+import org.usfirst.frc.team236.robot.commands.drive.RecordMacro;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
