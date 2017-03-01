@@ -71,13 +71,6 @@ public class Robot extends IterativeRobot {
 
 		leftGearLeg1 = new Profile(AutoMap.leftGearLeg1);
 		leftGearLeg2 = new Profile(AutoMap.leftGearLeg2);
-
-		chooser = new SendableChooser();
-		//chooser.addDefault("Front", new TestAuto(tank, straightGearDelivery));
-		//chooser.addDefault("Right", new RightAuto());
-		chooser.addDefault("Left", new LeftAuto());
-
-		SmartDashboard.putData("Auto Mode", chooser);
 	}
 
 	@Override
@@ -98,13 +91,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-
-		SmartDashboard.putNumber("Left Encoder", tank.left.getDistance());
-		SmartDashboard.putNumber("Right Encoders", tank.right.getDistance());
-
-		SmartDashboard.putNumber("Left Velocity", tank.left.getEncoder().getRate());
-		SmartDashboard.putNumber("Right Velocity", tank.right.getEncoder().getRate());
-
 	}
 
 	public void teleopInit() {
@@ -120,14 +106,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Left Encoder", tank.left.getDistance());
-		SmartDashboard.putNumber("Right Encoders", tank.right.getDistance());
-		
-		SmartDashboard.putNumber("Left Velocity", tank.left.getEncoder().getRate());
-		SmartDashboard.putNumber("Right Velocity", tank.right.getEncoder().getRate());
-		SmartDashboard.putNumber("Left kV", tank.left.getSpeed()/tank.left.getEncoder().getRate());
-		SmartDashboard.putNumber("Right kV", tank.right.getSpeed()/tank.right.getEncoder().getRate());
-		SmartDashboard.putNumber("Gyro", tank.navx.getAngle());
 	}
 
 	@Override
