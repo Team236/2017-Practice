@@ -1,9 +1,7 @@
 
 package org.usfirst.frc.team236.robot;
 
-import org.usfirst.frc.team236.robot.commands.LeftAuto;
-import org.usfirst.frc.team236.robot.commands.RightAuto;
-import org.usfirst.frc.team236.robot.commands.TestAuto;
+import org.usfirst.frc.team236.robot.subsystems.Climber;
 import org.usfirst.frc.team236.robot.subsystems.Turret;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -12,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import ticktank.ControllerType;
 import ticktank.Settings;
 import ticktank.TickTank;
@@ -33,6 +30,7 @@ public class Robot extends IterativeRobot {
 	// Subsystems
 	public static TickTank tank;
 	public static Turret turret;
+	public static Climber climber;
 
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -61,6 +59,7 @@ public class Robot extends IterativeRobot {
 		config.turnParams = RobotMap.Drive.turnParams;
 
 		tank = new TickTank(config);
+		climber = new Climber();
 		oi = new OI();
 
 		// Create profiles
