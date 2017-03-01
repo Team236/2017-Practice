@@ -21,6 +21,15 @@ public class RobotMap {
 		public static final int DIO_LIMIT_BOTTOM = 7;
 	}
 	
+	public static class Climber {
+		public static final int PWM_CLIMBER = 4; // Splits to two motors 
+		public static final double CLIMB_SPEED = 1.0;
+
+		public static final boolean INV_CLIMBER = true;
+
+		public static final int DIO_LIMIT = 10;
+	}
+
 	public static class Drive {
 		public static final int DIO_LEFT_ENCODER_A = 8;
 		public static final int DIO_LEFT_ENCODER_B = 9;
