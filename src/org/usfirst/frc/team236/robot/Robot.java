@@ -4,6 +4,8 @@ package org.usfirst.frc.team236.robot;
 import org.usfirst.frc.team236.robot.subsystems.Climber;
 import org.usfirst.frc.team236.robot.subsystems.Turret;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,6 +20,8 @@ import ticktank.motionProfile.Profile;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	
+	public UsbCamera camera;
 
 	// Declare profiles
 	public static Profile straightGearDelivery;
@@ -61,6 +65,15 @@ public class Robot extends IterativeRobot {
 		tank = new TickTank(config);
 		climber = new Climber();
 		oi = new OI();
+
+		try {
+			camera = CameraServer.getInstance().startAutomaticCapture();
+			camera.setResolution(640, 480);
+			camera.setFPS(30);
+		} catch (Exception e) {
+			System.out.println("Camera capture failed");
+			System.out.println(e.getStackTrace());
+		}
 
 		// Create profiles
 		straightGearDelivery = new Profile(AutoMap.straightGear);
